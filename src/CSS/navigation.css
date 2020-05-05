@@ -1,0 +1,78 @@
+.navContainer {
+  width: 15%;
+  /* position: absolute; */
+}
+
+.navTitle {
+  background: #282c34;
+  padding: 20px;
+}
+nav {
+  height: 100vh;
+  background: black;
+  position: fixed;
+  width: 15%;
+}
+
+.navContent {
+  /* margin-top: 100px; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.navContent a {
+  width: 100%;
+  padding: 20px 0px 20px 0px;
+  border-top: 0.5px solid rgb(194, 194, 194);
+  text-align: left;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+.navContent a:first-child {
+  border: none;
+}
+.navContent a p {
+  margin: 0;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.navBackgroundSpace {
+  width: 100%;
+}
+.linkIcon {
+  margin-right: 5px;
+  width: 100%;
+}
+
+.shopOptions {
+  border-top: 1px solid white;
+  width: 100%;
+}
+
+.shopOptions p {
+  font-size: 1rem;
+  /* border-bottom: 1px solid white; */
+  margin: 0px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  margin-left:8px;
+  color: rgb(165, 164, 164);
+}
+.shopOptions a {
+    color:white;
+  display: flex;
+  /* padding-left:10px; */
+}
+.shopOption p {
+    padding:0px;
+    color:white;
+    padding-left:10px;
+  font-size: 0.8rem;
+
+    
+}

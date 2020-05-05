@@ -1,0 +1,76 @@
+.dashboard {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+
+.dashboardContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+
+.shopsContainer {
+  width: 80%;
+}
+
+.shopCard {
+  background-color: black;
+  min-height: 300px;
+  /* width:80% */
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.leftCardContent {
+  width: 24%;
+}
+
+.logoContainer {
+  background: white;
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  border: 4px solid #3fadaa;
+  overflow: hidden;
+  justify-content: space-between;
+}
+.leftCardContent img {
+  width: 80%;
+  margin: auto;
+}
+.buttonContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.middleCardContent {
+  width: 50%;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+
+  /* height:80%; */
+}
+
+.rightCardContent {
+  width: 24%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightCardContent h3 {
+  margin: 0;
+}
+.rightCardContent h4 {
+  margin: 10px 0;
+}

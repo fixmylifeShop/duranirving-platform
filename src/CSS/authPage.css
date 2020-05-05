@@ -1,5 +1,7 @@
 .authContainer {
-  background-image: url("../images/login_background.jpg");
+  /* background-image: url("../images/login_background.jpg"); */
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(rgb(196, 66, 66), rgb(121, 121, 115)); /* Standard syntax (must be last) */
   width: 100vw;
   height: 100vh;
   background-size: 100% 100%;

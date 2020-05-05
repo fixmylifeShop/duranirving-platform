@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
 import { axiosWithoutAuth } from "../configurations/axiosConfig";
 import "../../CSS/authPage.css";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -15,6 +14,9 @@ export default function AuthenticationPage() {
   useEffect(() => {
     if (error) {
       setError(false);
+    }
+    if (localStorage.getItem("token")) { 
+      history.push("/");
     }
   }, [path]);
 

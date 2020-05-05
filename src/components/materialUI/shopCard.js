@@ -1,60 +1,99 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-
-const useStyles = makeStyles({
-  root: {
-    width: 245,
-    maxWidth: 345,
-    display: "flex",
-    flexDirection: "column",
-    margin:10,
-
-  },
-  media: {
-    height: 200,
-  },
-  options: {
-
-  }
-});
+import { Line } from "react-chartjs-2";
+import { Link } from "react-router-dom";
 
 export default function ShopCard(props) {
-  const classes = useStyles();
+  const shop = props.shop;
+
+  const roundCount = (value) => {
+    if (value > 1000) {
+      return Math.round(value / 1000) + "K*";
+    } else {
+      return value;
+    }
+  };
+  const data = {
+    visitors: {
+      labels: shop.views.view_years,
+      datasets: [
+        {
+          label: "visitors",
+          backgroundColor: "#3FADAA",
+          data: shop.views.view_data,
+        },
+      ],
+    },
+  };
 
   return (
-    <Card className={classes.root} >
-      <CardActionArea  href={`/shop/${props.shop.id}`}>
-        {/* <CardMedia
-          className={classes.media}
-          // image={props.shop.store_logo}
-          title="Contemplative Reptile"
-        > */}
-          <img src={props.shop.store_logo} className={classes.media}/>
-        {/* </CardMedia> */}
-        <CardContent>
-          <Typography gutterBottom component="h2">
-            {props.shop.store_name.toUpperCase()}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.shop.products.length} Products
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.options}>
-        <Button size="small" color="primary" href={`/shop/${props.shop.id}`}>
-          Edit
-        </Button>
-        <Button size="small" color="primary" href={props.shop.store_url}>
-          View Site
-        </Button>
-      </CardActions>
-    </Card>
+    <div className="shopCard">
+      <div className="leftCardContent">
+        <div className="logoContainer">
+          <img src={shop.store_logo} />
+        </div>
+        <div className="buttonContainer">
+          <Link to={`/shop/${props.shop.id}`}>
+            <Button
+              variant="contained"
+              size="small"
+              // color="primary"
+
+              onClick={() => {
+                props.setNavShop(shop);
+              }}
+            >
+              Edit
+            </Button>
+          </Link>
+
+          <Button
+            variant="contained"
+            size="small"
+            // color="primary"
+            target="_blank"
+            href={`https://www.${props.shop.store_url}`}
+          >
+            View Site
+          </Button>
+        </div>
+
+        {/* <div></div> */}
+      </div>
+      <div className="middleCardContent">
+        <Line
+          options={{
+            responsive: true,
+            legend: {
+              display: false,
+            },
+            scales: {
+              yAxes: [
+                {
+                  display: false,
+                },
+              ],
+            },
+          }}
+          data={data.visitors}
+        />
+      </div>
+      <div className="rightCardContent">
+        <div>
+          <h3>{shop.store_name.toUpperCase()}</h3>
+          <h4>
+            {shop.views.view_years[0] +
+              " - " +
+              shop.views.view_years[shop.views.view_years.length - 1]}
+          </h4>
+          <div>
+            <h4 style={{ margin: "0" }}>Visitors </h4>
+            <p style={{ margin: "0" }}>
+              {roundCount(shop.views.total_views || 0)}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

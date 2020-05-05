@@ -11,7 +11,7 @@ function App() {
       <div className="App-header">
         {/* <Switch> */}
           <PrivateRoute   path="/" component={HomePage} />
-          <Route exact path="/auth" component={AuthenticationPage} />
+          <Route path="/auth" component={AuthenticationPage} />
         {/* </Switch> */}
       </div>
     </div>
