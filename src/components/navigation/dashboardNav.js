@@ -13,7 +13,10 @@ export default function DashboardNav({ setNavShop, navShop }) {
 
   return (
     <div className="navContainer">
-      <nav>
+      <nav className="mobileNav">
+      <div className="navTitle">DURANIRVING</div>
+      </nav>
+      <nav className="fullNav">
         <div className="navTitle">DURANIRVING</div>
         <div className="navContent">
           <Link to="/" onClick={() => setNavShop(false)}>

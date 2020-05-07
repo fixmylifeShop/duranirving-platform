@@ -62,7 +62,7 @@ export default function ShopCard(props) {
           </Button>
         ) : (
           <div className="buttonContainer">
-            {/* <Link to={`/shop/${props.shop.id}`}> */}
+            <Link to={`/shop/${props.shop.id}`}>
               <Button
                 variant="contained"
                 size="small"
@@ -70,12 +70,11 @@ export default function ShopCard(props) {
 
                 onClick={() => {
                   props.setNavShop(shop);
-                  history.push(`/shop/${props.shop.id}`)
                 }}
               >
                 Edit
               </Button>
-            {/* </Link> */}
+            </Link>
             <Button
               variant="contained"
               size="small"
@@ -108,12 +107,12 @@ export default function ShopCard(props) {
       </div>
       <div className="rightCardContent">
         <div>
-          <h5>{shop.store_name.toUpperCase()}</h5>
-          <h6>
+          <h3>{shop.store_name.toUpperCase()}</h3>
+          <h4>
             {shop.views.view_years[0] +
               " - " +
               shop.views.view_years[shop.views.view_years.length - 1]}
-          </h6>
+          </h4>
           <div>
             <h4 style={{ margin: "0" }}>Visitors </h4>
             <p style={{ margin: "0" }}>

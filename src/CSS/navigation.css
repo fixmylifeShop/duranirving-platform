@@ -1,17 +1,24 @@
 .navContainer {
   width: 15%;
+  min-width: 170px;
+  /* border-right:5px solid #282C34; */
   /* position: absolute; */
+}
+
+.mobileNav {
+  display: none;
 }
 
 .navTitle {
   background: #282c34;
-  padding: 20px;
+  padding: 20px 0px;
 }
-nav {
+.fullNav {
   height: 100vh;
   background: black;
   position: fixed;
   width: 15%;
+  min-width: 170px;
 }
 
 .navContent {
@@ -60,19 +67,36 @@ nav {
   padding: 20px 0;
   display: flex;
   align-items: center;
-  margin-left:8px;
+  margin-left: 8px;
   color: rgb(165, 164, 164);
 }
 .shopOptions a {
-    color:white;
+  color: white;
   display: flex;
   /* padding-left:10px; */
 }
 .shopOption p {
-    padding:0px;
-    color:white;
-    padding-left:10px;
+  padding: 0px;
+  color: white;
+  padding-left: 10px;
   font-size: 0.8rem;
+}
 
-    
+@media only screen and (max-width: 900px) {
+  .navContainer {
+    /* display: none; */
+    /* border-right:5px solid #282C34; */
+    /* position: absolute; */
+  }
+  .fullNav {
+    display: none;
+  }
+  .mobileNav {
+    display: flex;
+    margin:20px;
+  }
+  .navTitle {
+    background: #282c34;
+    padding: 0px;
+  }
 }

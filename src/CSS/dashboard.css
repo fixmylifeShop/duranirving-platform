@@ -14,29 +14,27 @@
   /* margin-top:70px; */
   /* max-height: 80vh; */
 }
-.alert{
+.alert {
   /* height:70px; */
   width: 70%;
   /* background:red; */
-border-radius: 10px;
-overflow: hidden;
-margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
 }
 
 .deleted {
-  background:red;
+  background: red;
 }
 .created {
-  background:rgba(52, 52, 253, 0.979);
+  background: rgba(52, 52, 253, 0.979);
 }
-.message{
+.message {
   margin: 0px;
   /* background:red; */
   /* width: 100%; */
-/* border-radius: 3px; */
-
+  /* border-radius: 3px; */
 }
-
 
 .shopsContainer {
   width: 80%;
@@ -44,7 +42,7 @@ margin: 20px;
 
 .shopCard {
   background-color: black;
-  min-height: 300px;
+  min-height: 250px;
   /* width:80% */
   margin-bottom: 10px;
   border-radius: 10px;
@@ -93,9 +91,33 @@ margin: 20px;
   justify-content: center;
 }
 
-.rightCardContent h3 {
+.rightCardContent h5 {
   margin: 0;
 }
-.rightCardContent h4 {
+.rightCardContent h6 {
   margin: 10px 0;
+}
+
+@media only screen and (max-width: 1000px) {
+  .shopsContainer {
+    width: 98%;
+    min-height: 300px;
+  }
+  .dashboardContent {
+    width: 98%;
+    margin: auto;
+  }
+  .shopContainer {
+    width: 98%;
+
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  .alert {
+    display: none;
+  }
 }
