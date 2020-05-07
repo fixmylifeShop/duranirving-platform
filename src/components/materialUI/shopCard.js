@@ -2,10 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Line } from "react-chartjs-2";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { axiosWithoutAuth } from "../configurations/axiosConfig";
 
 export default function ShopCard(props) {
   const shop = props.shop;
-
+  const history = useHistory();
   const roundCount = (value) => {
     if (value > 1000) {
       return Math.round(value / 1000) + "K*";
@@ -26,39 +28,63 @@ export default function ShopCard(props) {
     },
   };
 
+  const deleteStore = () => {
+    axiosWithoutAuth()
+      .delete(`/shops/${shop.id}`)
+      .then((res) => {
+        console.log(res);
+        // props.setNavShop(false);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(shop);
   return (
     <div className="shopCard">
       <div className="leftCardContent">
         <div className="logoContainer">
           <img src={shop.store_logo} />
         </div>
-        <div className="buttonContainer">
-          <Link to={`/shop/${props.shop.id}`}>
-            <Button
-              variant="contained"
-              size="small"
-              // color="primary"
-
-              onClick={() => {
-                props.setNavShop(shop);
-              }}
-            >
-              Edit
-            </Button>
-          </Link>
-
+        {props.deleteStore ? (
           <Button
             variant="contained"
             size="small"
             // color="primary"
             target="_blank"
-            href={`https://www.${props.shop.store_url}`}
+            // href={`https://www.${props.shop.store_url}`}
+            onClick={deleteStore}
           >
-            View Site
+            Delete
           </Button>
-        </div>
+        ) : (
+          <div className="buttonContainer">
+            <Link to={`/shop/${props.shop.id}`}>
+              <Button
+                variant="contained"
+                size="small"
+                // color="primary"
 
-        {/* <div></div> */}
+                onClick={() => {
+                  props.setNavShop(shop);
+                }}
+              >
+                Edit
+              </Button>
+            </Link>
+            <Button
+              variant="contained"
+              size="small"
+              // color="primary"
+              target="_blank"
+              href={`https://www.${props.shop.store_url}`}
+            >
+              View Site
+            </Button>
+          </div>
+        )}
       </div>
       <div className="middleCardContent">
         <Line

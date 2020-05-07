@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithoutAuth } from "../configurations/axiosConfig";
-
+import ShopCard from "../materialUI/shopCard";
 import ProductCard from "../materialUI/productCard";
+import { useHistory } from "react-router-dom";
+import "../../CSS/shopPage.css";
+
 export default function ShopPage(props) {
   const [shopData, setShopData] = useState(false);
+  const [viewData, setViewData] = useState(false);
   let shop_id = props.match.params.id;
+  const history = useHistory();
 
   useEffect(() => {
     if (!shopData) {
@@ -13,7 +18,20 @@ export default function ShopPage(props) {
         .then((res) => {
           setShopData(res.data);
           props.setNavShop(res.data);
-          console.log(res.data);
+          // console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    if (!shopData.views) {
+      axiosWithoutAuth()
+        .get(`/views/${shop_id}`)
+        .then((res) => {
+          shopData.views = res.data;
+          setViewData(res.data);
+          setShopData(shopData);
+          // props.setNavShop(res.data)
         })
         .catch((err) => {
           console.log(err);
@@ -21,10 +39,27 @@ export default function ShopPage(props) {
     }
   });
 
+  const deleteStore = () => {
+    axiosWithoutAuth()
+      .delete(`/shops/${shopData.id}`)
+      .then((res) => {
+        history.push("/");
+        props.setNavShop(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div>
-      <a href={`/shop/${shopData.id}/create_product`}>Create Product</a>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div className="shopContainer">
+      {/* <a href={`/shop/${shopData.id}/create_product`}>Create Product</a> */}
+      {viewData ? (
+        <ShopCard shop={shopData} deleteStore={deleteStore} />
+      ) : (
+        ""
+      )}
+      <div className="shopProductsContainer">
         {shopData &&
           shopData.products.map((product) => {
             return <ProductCard product={product} />;

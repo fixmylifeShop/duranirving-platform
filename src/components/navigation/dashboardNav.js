@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, useLocation } from "react-router-dom";
 import "../../CSS/navigation.css";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HelpIcon from "@material-ui/icons/Help";
-import StoreIcon from "@material-ui/icons/Store";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ArrowDropDownCircleIcon from "@material-ui/icons/ArrowDropDownCircle";
 export default function DashboardNav({ setNavShop, navShop }) {
+  const { pathname } = useLocation();
+
 
   return (
     <div className="navContainer">
