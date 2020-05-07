@@ -59,6 +59,7 @@ export default function CreateProductForm(props) {
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={handleSubmit}
       >
+        <img />
         <input
           name="product_name"
           placeholder="Name of Product"
@@ -69,11 +70,7 @@ export default function CreateProductForm(props) {
           placeholder="description"
           onChange={handleChange}
         />
-        <input
-          name="price"
-          placeholder="price"
-          onChange={handleChange}
-        />
+        <input name="price" placeholder="price" onChange={handleChange} />
         <input type="file" onChange={handleFile} />
         <button>Submit</button>
       </form>

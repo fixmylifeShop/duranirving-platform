@@ -1,0 +1,65 @@
+.newShopForm {
+  display: flex;
+  flex-wrap: wrap;
+  /* height: 100vh; */
+  align-items: center;
+}
+
+.shopLogocontainer {
+  width: 300px;
+  height: 200px;
+  margin: 0px 10px;
+  background-image: url("../images/logoHolder.svg");
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
+.selectedLogo {
+  width: 300px;
+  margin: 0px 10px;
+  height: auto;
+  border-radius: 50%;
+}
+.selectedLogoContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .shopLogocontainer img {
+  width: 100%;
+
+} */
+.hiddenInput {
+  display: none;
+}
+.addLogoButton {
+  margin: auto;
+  background: white;
+  border-radius: 50%;
+}
+.textContainers {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  margin: auto;
+  /* height: 300px; */
+}
+.storeInput {
+  margin-bottom: 4px;
+  /* width: 300px; */
+}
+.textContainers input {
+  /* margin:50px 0px;  */
+  background: white;
+  overflow: hidden;
+  border-radius: 3px;
+  margin: auto;
+  width: 250px;
+}
+.textContainers button {
+  width: 280px;
+  margin: auto;
+}

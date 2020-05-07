@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
-import { axiosWithoutAuth } from "../configurations/axiosConfig";
+import { axiosWithoutAuth,axiosWithAuth } from "../configurations/axiosConfig";
 import "../../CSS/authPage.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -31,7 +31,7 @@ export default function AuthenticationPage() {
   };
 
   const auth = () => {
-    axiosWithoutAuth()
+    axiosWithAuth()
       .post(`${path}`, credentials)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
