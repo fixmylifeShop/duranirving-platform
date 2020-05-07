@@ -5,13 +5,38 @@
   position: relative;
 }
 
-
 .dashboardContent {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 85%;
+  /* margin-top:70px; */
+  /* max-height: 80vh; */
 }
+.alert{
+  /* height:70px; */
+  width: 70%;
+  /* background:red; */
+border-radius: 10px;
+overflow: hidden;
+margin: 20px;
+}
+
+.deleted {
+  background:red;
+}
+.created {
+  background:rgba(52, 52, 253, 0.979);
+}
+.message{
+  margin: 0px;
+  /* background:red; */
+  /* width: 100%; */
+/* border-radius: 3px; */
+
+}
+
 
 .shopsContainer {
   width: 80%;

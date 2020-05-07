@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
-import { axiosWithoutAuth,axiosWithAuth } from "../configurations/axiosConfig";
+import { axiosWithoutAuth, axiosWithAuth } from "../configurations/axiosConfig";
 import "../../CSS/authPage.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,7 +15,7 @@ export default function AuthenticationPage() {
     if (error) {
       setError(false);
     }
-    if (localStorage.getItem("token")) { 
+    if (localStorage.getItem("token")) {
       history.push("/");
     }
   }, [path]);
@@ -60,7 +60,7 @@ export default function AuthenticationPage() {
     // ) {
     //   setError("Please All Text Fields");
     // } else {
-      auth();
+    auth();
     // }
   };
 
@@ -79,7 +79,7 @@ export default function AuthenticationPage() {
 
   const form = () => {
     return (
-      <form onSubmit={submitForm} className="form">
+      <form onSubmit={() => submitForm()} className="form">
         {newInput("email", "Email")}
         {path === "/register" ? newInput("first_name", "First Name") : ""}
         {path === "/register" ? newInput("last_name", "Last Name") : ""}

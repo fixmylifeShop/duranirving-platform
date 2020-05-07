@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../configurations/axiosConfig";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import "../../CSS/createStoreForm.css";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,7 +11,7 @@ export default function CreateShopForm(props) {
   const [shopInfo, setShopInfo] = useState(false);
   const [file, setFile] = useState(false);
   const [storeLogo, setStoreLogo] = useState(false);
-  const history = useHistory()
+  // const history = useHistory();
   const handleChange = (e) => {
     setShopInfo({
       ...shopInfo,
@@ -34,6 +34,7 @@ export default function CreateShopForm(props) {
       .then((res) => {
         console.log(res.data);
         props.history.push(`/`);
+        props.setMessage(true)
       })
       .catch((err) => {
         console.log(err);
@@ -69,11 +70,34 @@ export default function CreateShopForm(props) {
   };
   console.log(shopInfo);
   return (
-    <form className="newShopForm" onSubmit={handleSubmit}>
-      {storeLogo ? (
-        <div>
-          <div className="selectedLogoContainer">
-            <img src={storeLogo} className="selectedLogo" />
+    <div>
+      <h3>CREACT A NEW SHOP </h3>
+      <form className="newShopForm" onSubmit={handleSubmit}>
+        {storeLogo ? (
+          <div>
+            <div className="selectedLogoContainer">
+              <img src={storeLogo} className="selectedLogo" />
+              <input
+                accept="image/*"
+                className="hiddenInput"
+                onChange={handleFile}
+                id="icon-button-file"
+                type="file"
+              />
+              <label htmlFor="icon-button-file">
+                <Button
+                  variant="contained"
+                  // color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  Change Image
+                </Button>
+              </label>
+            </div>
+          </div>
+        ) : (
+          <div className="shopLogocontainer">
             <input
               accept="image/*"
               className="hiddenInput"
@@ -81,71 +105,51 @@ export default function CreateShopForm(props) {
               id="icon-button-file"
               type="file"
             />
-            <label htmlFor="icon-button-file">
-              <Button
-                variant="contained"
-                // color="primary"
+            <label htmlFor="icon-button-file" className="addLogoButton">
+              <IconButton
+                color="primary"
                 aria-label="upload picture"
                 component="span"
               >
-                Change Image
-              </Button>
+                <AddCircleIcon />
+              </IconButton>
             </label>
           </div>
-        </div>
-      ) : (
-        <div className="shopLogocontainer">
-          <input
-            accept="image/*"
-            className="hiddenInput"
-            onChange={handleFile}
-            id="icon-button-file"
-            type="file"
-          />
-          <label htmlFor="icon-button-file" className="addLogoButton">
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <AddCircleIcon />
-            </IconButton>
-          </label>
-        </div>
-      )}
+        )}
 
-      <div className="textContainers">
-        <div className="storeInput">
-          <TextField
-            id="outlined-basic"
-            label="Name of your shop"
-            variant="filled"
-            name="store_name"
-            placeholder="Name of Shop"
-            onChange={handleChange}
-          />
-        </div>
+        <div className="textContainers">
+          <div className="storeInput">
+            <TextField
+              id="outlined-basic"
+              label="Name of your shop"
+              variant="filled"
+              name="store_name"
+              placeholder="Name of Shop"
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="storeInput">
-          <TextField
-            id="outlined-basic"
-            label="Your Shop Url "
-            name="store_url"
-            placeholder="Shop url"
-            onChange={handleChange}
-            variant="filled"
-          />
+          <div className="storeInput">
+            <TextField
+              id="outlined-basic"
+              label="Your Shop Url "
+              name="store_url"
+              placeholder="Shop url"
+              onChange={handleChange}
+              variant="filled"
+            />
+          </div>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={disable()}
+            onClick={handleSubmit}
+          >
+            Create Shop
+          </Button>
+          {/* <button>Submit</button> */}
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={disable()}
-          onClick={handleSubmit}
-        >
-          Primary
-        </Button>
-        {/* <button>Submit</button> */}
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }

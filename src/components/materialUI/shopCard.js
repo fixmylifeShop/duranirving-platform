@@ -51,6 +51,7 @@ export default function ShopCard(props) {
         {props.deleteStore ? (
           <Button
             variant="contained"
+            color="secondary"
             size="small"
             // color="primary"
             target="_blank"

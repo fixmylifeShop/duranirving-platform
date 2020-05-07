@@ -8,21 +8,13 @@ import "../../CSS/shopPage.css";
 export default function ShopPage(props) {
   const [shopData, setShopData] = useState(false);
   const [viewData, setViewData] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   let shop_id = props.match.params.id;
   const history = useHistory();
 
   useEffect(() => {
     if (!shopData) {
-      axiosWithoutAuth()
-        .get(`/shops/${shop_id}`)
-        .then((res) => {
-          setShopData(res.data);
-          props.setNavShop(res.data);
-          // console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getProducts();
     }
     if (!shopData.views) {
       axiosWithoutAuth()
@@ -39,12 +31,32 @@ export default function ShopPage(props) {
     }
   });
 
+  const getProducts = () => {
+    axiosWithoutAuth()
+      .get(`/shops/${shop_id}`)
+      .then((res) => {
+        setShopData(res.data);
+        res.data.views = viewData
+        props.setNavShop(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (refresh) {
+    getProducts();
+    setRefresh(false);
+  }
+
   const deleteStore = () => {
     axiosWithoutAuth()
       .delete(`/shops/${shopData.id}`)
       .then((res) => {
-        history.push("/");
+        console.log(res);
         props.setNavShop(false);
+        props.setMessage("Store Deleted");
+        // history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -54,15 +66,11 @@ export default function ShopPage(props) {
   return (
     <div className="shopContainer">
       {/* <a href={`/shop/${shopData.id}/create_product`}>Create Product</a> */}
-      {viewData ? (
-        <ShopCard shop={shopData} deleteStore={deleteStore} />
-      ) : (
-        ""
-      )}
+      {shopData.views && viewData ? <ShopCard shop={shopData} deleteStore={deleteStore} /> : ""}
       <div className="shopProductsContainer">
         {shopData &&
           shopData.products.map((product) => {
-            return <ProductCard product={product} />;
+            return <ProductCard product={product} setRefresh={setRefresh} />;
           })}
       </div>
     </div>
