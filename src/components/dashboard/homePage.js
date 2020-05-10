@@ -31,10 +31,10 @@ export default function HomePage(props) {
   // };
 
   const getReq = async () => {
-    let res = await axiosWithAuth().get("/shops/logged/user")
-
-    setUserShops(res.data)
-  }
+    let res = await axiosWithAuth().get("/shops/logged/user");
+    console.log(res);
+    // setUserShops(res.data)
+  };
 
   // console.log("nav shop", navShop);
   // useEffect(() => {
