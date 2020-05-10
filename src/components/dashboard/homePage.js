@@ -31,9 +31,16 @@ export default function HomePage(props) {
   // };
 
   const getReq = async () => {
-    let res = await axiosWithAuth().get("/shops/logged/user");
+let res
+try {
+res = await axiosWithAuth().get("/shops/logged/user");
     console.log(res);
-    // setUserShops(res.data)
+    setUserShops(res.data)
+} catch (error) {
+  console.log(error)
+}
+
+    
   };
 
   // console.log("nav shop", navShop);
