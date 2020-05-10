@@ -19,18 +19,23 @@ export default function HomePage(props) {
   useEffect(() => {
     getReq();
   }, [pathname]);
-  const getReq = () => {
-    // if (!userShops) {
-    axiosWithAuth()
-      .get("/shops/logged/user")
-      .then((res) => {
-        setUserShops(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // }
-  };
+  // const getReq = () => {
+  //   axiosWithAuth()
+  //     .get("/shops/logged/user")
+  //     .then((res) => {
+  //       setUserShops(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  const getReq = async () => {
+    let res = await axiosWithAuth().get("/shops/logged/user")
+
+    setUserShops(res.data)
+  }
+
   // console.log("nav shop", navShop);
   // useEffect(() => {
   //   getReq();
