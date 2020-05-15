@@ -1,0 +1,207 @@
+.productContainer {
+  margin: auto;
+  width: 95%;
+  min-height: 80vh;
+  background: white;
+  border-radius: 20px;
+}
+.editProductContainer {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.productImageContainer {
+  width: 60%;
+  height: 100%;
+  align-self: center;
+  border-right: 2px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.productImage {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.productImageContainer .productImage img {
+  width: 60%;
+  height: auto;
+  margin: auto;
+  /* padding: 30px; */
+  /* max-height: 50%; */
+}
+
+.imageOptionContainer {
+  /* width: 10%; */
+  height: 100px;
+  min-width: 100px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+}
+.imagesContainer {
+  width: 100px;
+  cursor: pointer;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* width:150px; */
+}
+.imagesOptions {
+  width: 100%;
+  align-self: center;
+  /* height:100%; */
+  padding: 0;
+}
+
+.addPhotoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  overflow: hidden;
+}
+.addProductPhotoButton {
+  /* width:50px;
+  height:50px; */
+}
+.imageDeleteButton {
+  /* height:50px; */
+  right: 20px;
+  top: 50px;
+  position: absolute;
+}
+.productInfoContainer {
+  width: 30%;
+  margin: auto;
+  height: 60vh;
+  /* max-height: 100vh; */
+  color: black;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.product-price-title {
+  /* padding:10px 5% 0 5% ; */
+  /* margin: 0 auto; */
+  width: 100%;
+  font-size: 1.3rem;
+  text-align: left;
+}
+.cancalUpdateButton {
+  right: 0px;
+  top: 30px;
+  position: absolute;
+}
+.product-price {
+  color: red;
+  margin: 0;
+}
+
+.product-name {
+  margin: 0;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+}
+.title {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.descriptionParagraph {
+  font-size: 1rem;
+  text-align: left;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 800px) {
+  .productImage {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .productImageContainer .productImage img {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    /* padding: 30px; */
+    /* max-height: 50%; */
+  }
+
+  .productContainer {
+    width: 100%;
+  }
+  .editProductContainer {
+    flex-direction: column;
+  }
+  .productInfoContainer {
+    /* margin-top: 30px; */
+    width: 95%;
+  }
+  .productImageContainer {
+    width: 100%;
+    max-height: auto;
+    border: none;
+  }
+  .imageDeleteButton {
+    /* height:50px; */
+    right: 20px;
+    top: 50px;
+    align-self: flex-end;
+    position: relative;
+  }
+  .cancalUpdateButton {
+    right: 20px;
+    top: 0px;
+    align-self: flex-end;
+    position: relative;
+  }
+  .descriptionParagraph {
+    display: flex;
+    flex-direction: column;
+    /* max-height: 100px; */
+  }
+  .descriptionContainer{
+    height:auto;
+    max-height:200px;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .editProductContainer {
+    flex-direction: column;
+  }
+  .editProductContainer {
+    /* margin: 100px auto 100px auto; */
+    padding-bottom: 30px;
+    max-height: 200%;
+  }
+  .productInfoContainer {
+    height: auto;
+  }
+  .productImageContainer {
+    width: 100%;
+    max-height: 80%;
+    border: none;
+  }
+  .descriptionParagraph {
+    display: flex;
+    flex-direction: column;
+  }
+}
