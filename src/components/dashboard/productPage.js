@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { axiosWithoutAuth } from "../configurations/axiosConfig";
+import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "../../CSS/productPage.css";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { axiosWithAuth } from "../configurations/axiosConfig";
 import TextField from "@material-ui/core/TextField";
-
+import DeleteDialog from "../materialUI/deleteDialog";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 export default function ProductPage(props) {
   const [product, setProduct] = useState(false);
   const [image, setImage] = useState(false);
   const [edit, setEdit] = useState(false);
   const [changes, setChanges] = useState(false);
-
+  const history = useHistory();
   const id = props.match.params.id;
 
   const getProductData = () => {
@@ -20,8 +22,10 @@ export default function ProductPage(props) {
       .get(`/shops/products/${id}`)
       .then((res) => {
         setProduct(res.data);
-        setImage(res.data.images[0]);
-        console.log(res.data);
+        if (!image) {
+          setImage(res.data.images[0]);
+        }
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -43,6 +47,8 @@ export default function ProductPage(props) {
         axiosWithAuth()
           .post("/shops/images", data)
           .then((res) => {
+            console.log(res.data);
+            setImage(res.data);
             getProductData();
           })
           .catch((err) => {
@@ -57,7 +63,10 @@ export default function ProductPage(props) {
   const deleteImage = (photo_id) => {
     axiosWithAuth()
       .delete(`/shops/images/${photo_id}`)
-      .then(() => getProductData())
+      .then(() => {
+        getProductData();
+        setImage(product.images[0]);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -71,7 +80,6 @@ export default function ProductPage(props) {
   };
 
   const disable = () => {
-
     if (changes) {
       return false;
     } else {
@@ -100,42 +108,56 @@ export default function ProductPage(props) {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(changes);
+  console.log(product);
   return (
     <div className="productContainer">
+      <div className="backToShopButton">
+        <Button
+          // variant="outlined"
+          color="primary"
+          onClick={() => history.push(`/shop/${product.shop_id}`)}
+        >
+          <KeyboardBackspaceIcon /> Back to Shop
+        </Button>
+      </div>
+
       {product ? (
         <div className="editProductContainer">
           <div className="productImageContainer">
             {image ? (
               <div className="productImage">
                 <img src={image.image} alt="product" />
-                <div className="imageDeleteButton">
-                  {" "}
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => deleteImage(image.id)}
-                  >
-                    Delete Image
-                  </Button>
-                </div>
+                {product.images.length === 1 ? (
+                  ""
+                ) : (
+                  <div className="imageDeleteButton">
+                    <DeleteDialog
+                      onClickDelete={() => deleteImage(image.id)}
+                      buttonName="Delete image"
+                      title={`Are you sure you want to delete this image ?`}
+                      description="You are about to permanently delete this image."
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               ""
             )}
             <div className="imageOptionContainer">
+              {console.log(image)}
               {product &&
                 product.images.map((options) => {
                   return (
                     <div
-                      className="imagesContainer"
+                      className={`imagesContainer ${
+                        image.image === options.image ? "selectedImage" : ""
+                      }`}
                       onClick={() => setImage(options)}
                     >
                       <img
                         src={options.image}
                         alt="product"
-                        className="imagesOptions"
+                        className={`imagesOptions`}
                       />
                     </div>
                   );
@@ -229,7 +251,6 @@ export default function ProductPage(props) {
                   edit
                 </Button>{" "}
               </div>
-
               <div className="product-price-title">
                 <p>
                   Price:
@@ -243,10 +264,11 @@ export default function ProductPage(props) {
                   </p>
                 </p>
               </div>
-              <div className="descriptionContainer"> 
-              <p className="title">Description: </p>
-              <p className="descriptionParagraph">{product.description}</p>
-           </div> </div>
+              <div className="descriptionContainer">
+                <p className="title">Description: </p>
+                <p className="descriptionParagraph">{product.description}</p>
+              </div>{" "}
+            </div>
           )}
         </div>
       ) : (

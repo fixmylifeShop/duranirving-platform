@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { axiosWithoutAuth } from "../configurations/axiosConfig";
+import DeleteDialog from "../materialUI/deleteDialog";
 
 const useStyles = makeStyles({
   root: {
@@ -96,14 +97,15 @@ export default function ProductCard(props) {
         >
           Edit
         </Button>
-        <Button
-          size="small"
-          variant="contained"
-          color="secondary"
-          onClick={deleteProduct}
-        >
-          Delete
-        </Button>
+        <DeleteDialog
+          onClickDelete={deleteProduct}
+          title={`Are you sure you want to delete ${
+            props.product.product_name
+          } from ${props.shop.store_name.toUpperCase()} ?`}
+          description="Once you delete a product it's gone forever. If you need to remove 
+          it from your shop website temporary, please consider switching it to sold out or 
+          hidden in the products options."
+        />
       </CardActions>
     </Card>
   );

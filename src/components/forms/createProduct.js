@@ -37,7 +37,7 @@ export default function CreateProductForm(props) {
       .post("/shops/products", data)
       .then((res) => {
         console.log(res.data);
-        props.history.push(`/shop/${shop_id}`);
+        props.history.push(`/product/${res.data.id}`);
       })
       .catch((err) => {
         console.log(err);

@@ -4,6 +4,12 @@
   min-height: 80vh;
   background: white;
   border-radius: 20px;
+  position: relative;
+}
+.backToShopButton {
+  left: 10px;
+  top: 10px;
+  position: absolute;
 }
 .editProductContainer {
   margin: auto;
@@ -30,8 +36,8 @@
   overflow: hidden;
 }
 .productImageContainer .productImage img {
-  width: 60%;
-  height: auto;
+  /* width: 60%; */
+  height: 80%;
   margin: auto;
   /* padding: 30px; */
   /* max-height: 50%; */
@@ -39,20 +45,27 @@
 
 .imageOptionContainer {
   /* width: 10%; */
-  height: 100px;
+  height: 50px;
   min-width: 100px;
   display: flex;
+  justify-content: space-between;
   /* flex-direction: column; */
   justify-content: center;
 }
 .imagesContainer {
   width: 100px;
+  /* margin-right: 5px; */
   cursor: pointer;
   justify-content: center;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden;border-radius: 5px;
+  border:2px  solid white;
   /* width:150px; */
+}
+.selectedImage {
+  border:2px  solid black;
+  /* border-radius: 10px; */
 }
 .imagesOptions {
   width: 100%;
@@ -130,7 +143,20 @@
   overflow: auto;
 }
 
+@media only screen and (max-width: 1000px) {
+  .backToShopButton {
+    position: relative;
+    display: flex;
+    justify-content: left;
+  }
+}
+
 @media only screen and (max-width: 800px) {
+  .backToShopButton {
+    position: relative;
+    display: flex;
+    justify-content: left;
+  }
   .productImage {
     height: auto;
     display: flex;
@@ -177,9 +203,9 @@
     flex-direction: column;
     /* max-height: 100px; */
   }
-  .descriptionContainer{
-    height:auto;
-    max-height:200px;
+  .descriptionContainer {
+    height: auto;
+    max-height: 200px;
   }
 }
 

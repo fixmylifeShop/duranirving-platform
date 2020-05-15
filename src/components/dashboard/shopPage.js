@@ -4,6 +4,7 @@ import ShopCard from "../materialUI/shopCard";
 import ProductCard from "../materialUI/productCard";
 import { useHistory } from "react-router-dom";
 import "../../CSS/shopPage.css";
+import DeleteDialog from '../materialUI/deleteDialog'
 
 export default function ShopPage(props) {
   const [shopData, setShopData] = useState(false);
@@ -70,7 +71,7 @@ export default function ShopPage(props) {
       <div className="shopProductsContainer">
         {shopData &&
           shopData.products.map((product) => {
-            return <ProductCard product={product} setRefresh={setRefresh} />;
+            return <ProductCard product={product} setRefresh={setRefresh} shop={shopData}/>;
           })}
       </div>
     </div>

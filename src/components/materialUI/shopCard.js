@@ -4,6 +4,7 @@ import { Line } from "react-chartjs-2";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { axiosWithoutAuth } from "../configurations/axiosConfig";
+import DeleteDialog from "../materialUI/deleteDialog";
 
 export default function ShopCard(props) {
   const shop = props.shop;
@@ -49,32 +50,26 @@ export default function ShopCard(props) {
           <img src={shop.store_logo} />
         </div>
         {props.deleteStore ? (
-          <Button
-            variant="contained"
-            color="secondary"
-            size="small"
-            // color="primary"
-            target="_blank"
-            // href={`https://www.${props.shop.store_url}`}
-            onClick={deleteStore}
-          >
-            Delete
-          </Button>
+          <DeleteDialog
+            onClickDelete={deleteStore}
+            title={`Are you sure you want to delete ${shop.store_name.toUpperCase()} ?`}
+            description="Once you delete a shop it's gone forever. This means if you currently have it connected to a front-end website the data will be lost and you have to set it to another shop."
+          />
         ) : (
           <div className="buttonContainer">
             {/* <Link to={`/shop/${props.shop.id}`}> */}
-              <Button
-                variant="contained"
-                size="small"
-                // color="primary"
+            <Button
+              variant="contained"
+              size="small"
+              // color="primary"
 
-                onClick={() => {
-                  props.setNavShop(shop);
-                  history.push(`/shop/${props.shop.id}`)
-                }}
-              >
-                Edit
-              </Button>
+              onClick={() => {
+                props.setNavShop(shop);
+                history.push(`/shop/${props.shop.id}`);
+              }}
+            >
+              View
+            </Button>
             {/* </Link> */}
             <Button
               variant="contained"
@@ -83,7 +78,7 @@ export default function ShopCard(props) {
               target="_blank"
               href={`https://www.${props.shop.store_url}`}
             >
-              View Site
+              Visit Shop
             </Button>
           </div>
         )}
