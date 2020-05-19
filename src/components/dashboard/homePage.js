@@ -14,39 +14,33 @@ export default function HomePage(props) {
   const [userShops, setUserShops] = useState(false);
   const [navShop, setNavShop] = useState(false);
   const [message, setMessage] = useState(false);
+  const [orders, setOrders] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
     getReq();
   }, [pathname]);
-  // const getReq = () => {
-  //   axiosWithAuth()
-  //     .get("/shops/logged/user")
-  //     .then((res) => {
-  //       setUserShops(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
-  const getReq = async () => {
-let res
-try {
-res = await axiosWithAuth().get("/shops/logged/user");
-    console.log(res);
-    setUserShops(res.data)
-} catch (error) {
-  console.log(error)
-}
+  const getReq = () => {
+    axiosWithAuth()
+      .get("/shops/logged/user")
+      .then((res) => {
+        setUserShops(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    
+    axiosWithAuth()
+      .get("/orders/user/")
+      .then((res) => {
+        // setUserShops(res.data);
+        setOrders(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  // console.log("nav shop", navShop);
-  // useEffect(() => {
-  //   getReq();
-  // });
 
   console.log(message);
   const messageContent = () => {
